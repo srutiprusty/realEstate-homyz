@@ -9,15 +9,13 @@ import UserDetailContext from "../../context/UserDetailContext";
 const Bookings = () => {
   const { data, isError, isLoading } = useProperties();
   const [filter, setFilter] = useState("");
-  /* const {
-    userDetails: { bookings },
-  } = useContext(UserDetailContext); */
   const {
     userDetails: { bookings = [] } = {}, // Fallback to empty array if undefined
   } = useContext(UserDetailContext);
 
-  const bookingsList = bookings || []; // Default to an empty array if undefined
-
+  // Ensure data and bookings are correctly populated
+  console.log("Bookings:", bookings);
+  console.log("Properties Data:", data);
 
   if (isError) {
     return (
@@ -40,31 +38,32 @@ const Bookings = () => {
       </div>
     );
   }
+
+  // Ensure that `data` and `bookings` are arrays
+  const filteredProperties = data
+    ? data
+        .filter((property) => bookings.some((booking) => booking.id === property.id)) // Check if the property id is in the bookings
+        .filter(
+          (property) =>
+            property.title.toLowerCase().includes(filter.toLowerCase()) ||
+            property.city.toLowerCase().includes(filter.toLowerCase()) ||
+            property.country.toLowerCase().includes(filter.toLowerCase())
+        )
+    : []; // Fallback to empty array if data is undefined
+
   return (
-    <div className="wrapper" style={{height:"28rem"}}>
+    <div className="wrapper" style={{ height: "28rem" }}>
       <div className="flexColCenter paddings innerWidth properties-container">
         <SearchBar filter={filter} setFilter={setFilter} />
 
         <div className="paddings flexCenter properties">
-          {
-            // data.map((card, i)=> (<PropertyCard card={card} key={i}/>))
-
-            /* data
-              .filter((property) =>
-                bookings.map((booking) => booking.id).includes(property.id)
-              ) */
-              data.filter((property) => bookings.includes(property.id))
-
-              .filter(
-                (property) =>
-                  property.title.toLowerCase().includes(filter.toLowerCase()) ||
-                  property.city.toLowerCase().includes(filter.toLowerCase()) ||
-                  property.country.toLowerCase().includes(filter.toLowerCase())
-              )
-              .map((card, i) => (
-                <PropertyCard card={card} key={i} />
-              ))
-          }
+          {filteredProperties.length > 0 ? (
+            filteredProperties.map((card, i) => (
+              <PropertyCard card={card} key={i} />
+            ))
+          ) : (
+            <span>No bookings found</span>
+          )}
         </div>
       </div>
     </div>

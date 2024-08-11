@@ -8,16 +8,17 @@ import { MantineProvider } from "@mantine/core";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Auth0Provider
-     domain="dev-ymtltn84g8kje8v4.us.auth0.com"
-      clientId="XiZfh44L3tZEpu7p2JHzAocBWLjcijZM"
+      domain="dev-ymtltn84g8kje8v4.us.auth0.com" // Replace with your Auth0 domain
+      clientId="XiZfh44L3tZEpu7p2JHzAocBWLjcijZM" // Replace with your Auth0 client ID
       authorizationParams={{
-        redirect_uri: "http://localhost:5173"
+        redirect_uri: "http://localhost:5173" // Ensure this is set in your Auth0 application settings
       }}
-     audience="http://localhost:8000"
-     scope="openid profile email"
+      audience="http://localhost:8000" // Ensure this matches your API identifier in Auth0
+      scope="openid profile email" // Define the scopes you need
     >
-    <MantineProvider><App /></MantineProvider>
-      
+      <MantineProvider>
+        <App />
+      </MantineProvider>
     </Auth0Provider>
   </React.StrictMode>
 );

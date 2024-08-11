@@ -7,7 +7,6 @@ import { bookVisit } from "../../utils/api.js";
 import { toast } from "react-toastify";
 import dayjs from "dayjs";
 
-
 const BookingModal = ({ opened, setOpened, email, propertyId }) => {
   const [value, setValue] = useState(null);
   const {
@@ -22,7 +21,7 @@ const BookingModal = ({ opened, setOpened, email, propertyId }) => {
     setUserDetails((prev) => ({
       ...prev,
       bookings: [
-        ...prev.bookings,
+        ...(prev.bookings || []),
         {
           id: propertyId,
           date: dayjs(value).format("DD/MM/YYYY"),
@@ -32,9 +31,12 @@ const BookingModal = ({ opened, setOpened, email, propertyId }) => {
   };
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: () => bookVisit(value, propertyId, email, token),
-    onSuccess: () => handleBookingSuccess(),
-    onError: ({ response }) => toast.error(response.data.message),
+    mutationFn: () => bookVisit(dayjs(value).format("YYYY-MM-DD"), propertyId, email, token),
+    onSuccess: handleBookingSuccess,
+    onError: (error) => {
+      const message = error?.response?.data?.message || "Something went wrong";
+      toast.error(message);
+    },
     onSettled: () => setOpened(false),
   });
 
@@ -45,10 +47,20 @@ const BookingModal = ({ opened, setOpened, email, propertyId }) => {
       title="Select your date of visit"
       centered
     >
-      <div className="flexColCenter" style={{gap: "1rem"}}>
-        <DatePicker value={value} onChange={setValue} minDate={new Date()} />
-        <Button disabled={!value || isLoading} onClick={() => mutate()}>
-          Book visit
+      <div className="flexColCenter" style={{ gap: "1rem" }}>
+        <DatePicker
+          value={value}
+          onChange={setValue}
+          minDate={new Date()}
+          placeholder="Pick a date"
+          label="Visit Date"
+          withAsterisk
+        />
+        <Button
+          disabled={!value || isLoading}
+          onClick={() => mutate()}
+        >
+          {isLoading ? 'Booking...' : 'Book visit'}
         </Button>
       </div>
     </Modal>
