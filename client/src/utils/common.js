@@ -1,7 +1,8 @@
 export const getMenuStyles = (menuOpened) => {
   if (document.documentElement.clientWidth <= 800) {
-    return { right: !menuOpened && "-100%" };
+    return { right: !menuOpened ? "-100%" : "0" };
   }
+  return {};
 };
 
 export const sliderSettings = {
@@ -23,7 +24,12 @@ export const sliderSettings = {
   },
 };
 
-export const updateFavourites = (id, favourites) => {
+export const updateFavourites = (id, favourites = []) => {
+  if (!Array.isArray(favourites)) {
+    console.error('Expected favourites to be an array');
+    return [];
+  }
+
   if (favourites.includes(id)) {
     return favourites.filter((resId) => resId !== id);
   } else {
@@ -31,12 +37,17 @@ export const updateFavourites = (id, favourites) => {
   }
 };
 
-export const checkFavourites = (id, favourites) => {
-  return favourites?.includes(id) ? "#fa3e5f" : "white";
+export const checkFavourites = (id, favourites = []) => {
+  if (!Array.isArray(favourites)) {
+    console.error('Expected favourites to be an array');
+    return "white";
+  }
+  return favourites.includes(id) ? "#fa3e5f" : "white";
 };
 
 export const validateString = (value) => {
-  return value?.length < 3 || value === null
-    ? "Must have atleast 3 characters"
-    : null;
+  if (value == null || value.length < 3) {
+    return "Must have at least 3 characters";
+  }
+  return null;
 };
