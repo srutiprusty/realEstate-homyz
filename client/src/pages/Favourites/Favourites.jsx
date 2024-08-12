@@ -30,7 +30,7 @@ const Favourites = () => {
 
   if (isLoading) {
     return (
-      <div className="wrapper flexCenter" style={{ height: "60vh" }}>
+      <div className="wrapper flexCenter" >
         <PuffLoader
           height="80"
           width="80"
@@ -42,7 +42,7 @@ const Favourites = () => {
     );
   }
   return (
-    <div className="wrapper" style={{height:"28rem"}}>
+    <div className="wrapper">
       <div className="flexColCenter paddings innerWidth properties-container">
         <SearchBar filter={filter} setFilter={setFilter} />
 

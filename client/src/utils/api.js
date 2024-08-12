@@ -66,7 +66,7 @@ export const createUser = async (email, token) => {
 // Book a visit
 export const bookVisit = async (date, propertyId, email, token) => {
   if (!token) {
-    toast.error("Authorization token is missing");
+    /* toast.error("Authorization token is missing"); */
     return;
   }
 
@@ -116,7 +116,7 @@ export const removeBooking = async (id, email, token) => {
 // Add a property to favorites
 export const toFav = async (id, email, token) => {
   if (!token) {
-    toast.error("Authorization token is missing");
+    /* toast.error("Authorization token is missing"); */
     return;
   }
 
