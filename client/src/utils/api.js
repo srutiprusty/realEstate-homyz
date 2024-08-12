@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 // Axios instance
 export const api = axios.create({
-  baseURL: "https://real-estate-homyz-client.vercel.app/api",
+  baseURL: "https://real-estate-homyz-one.vercel.app/api",
   timeout: 10000, // 10 seconds
 });
 
