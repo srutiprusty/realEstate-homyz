@@ -10,7 +10,8 @@ import {PuffLoader} from 'react-spinners'
 
 const Residencies = () => {
 
-  const {data, isError, isLoading} = useProperties()
+ /*  const {data, isError, isLoading} = useProperties() */
+ const { data = [], isError, isLoading } = useProperties();
 
   if(isError){
     return(
@@ -33,7 +34,7 @@ const Residencies = () => {
       </div>
     )
   }
-
+  console.log(data);
 
   return (
     <div id="residencies" className="r-wrapper">
@@ -42,15 +43,28 @@ const Residencies = () => {
           <span className="orangeText">Best Choices</span>
           <span className="primaryText">Popular Residencies</span>
         </div>
-        <Swiper {...sliderSettings}>
+        {/* <Swiper {...sliderSettings}>
           <SlideNextButton />
-          {/* slider */}
-          {data.slice(0, 8).map((card, i) => (
+          
+          {data.map((card, i) => (
             <SwiperSlide key={i}>
               <PropertyCard card={card}/>
             </SwiperSlide>
           ))}
+        </Swiper> */}
+
+        <Swiper {...sliderSettings}>
+          <SlideNextButton />
+          {Array.isArray(data) && data.map((card, i) => (
+            <SwiperSlide key={i}>
+              <PropertyCard card={card} />
+            </SwiperSlide>
+          ))}
         </Swiper>
+
+
+
+
       </div>
     </div>
   );
