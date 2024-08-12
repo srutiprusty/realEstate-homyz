@@ -1,51 +1,80 @@
-.f-wrapper>div{
-    height: 12rem;
+
+
+.f-wrapper {
+    width: 100%;
+   /*  background-color: #333;  */
+   background: var(--black);
+    color: #fff; /* Example text color */
+    padding: 20px;
 }
-.f-container{
-    background: var(--black);
-    justify-content: space-between;
-    border-top: .5px solid rgba(0,0,0,0.148);
-    
+
+.f-wrapper .paddings {
+    padding: 0 20px;
 }
-.f-left{
-    gap: 1rem;
+
+.f-wrapper .innerWidth {
+    max-width: 1200px; /* Adjust as needed */
+    margin: 0 auto;
 }
-.f-menu{
-    color: aliceblue;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-    font-weight: 500;
-    font-size: large;
-}
-.social-icons{
-    font-size: 35px;
+
+.f-wrapper .flexCenter {
     display: flex;
-    margin-top: 1.5rem;
-    gap: 35px;
-}
-#insta-logo{
-    
-    color: aliceblue;
-    background-image: linear-gradient(115deg, rgb(249, 206, 52), rgb(238, 42, 123), rgb(98, 40, 215));;
-    
+    justify-content: center;
+    align-items: center;
 }
 
-#face-logo,#linkedin-logo,#twitter-logo{
-    background-color: #f0f0f8;
+.f-wrapper .flexColStart {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 
-} 
+.f-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+}
 
+.f-left, .f-mid, .f-right {
+    flex: 1;
+    margin: 10px;
+}
 
+.social-icons {
+    display: flex;
  
+    gap: 10px;
+}
+
+.social-icons a {
+    color: #fff; /* Example icon color */
+    font-size: 24px; /* Adjust size as needed */
+}
+
+.f-menu {
+    display: flex;
+    
+    gap: 20px;
+}
+
+/* Media query for small screens */
 @media (max-width: 768px) {
-    .f-container{
-        justify-content: center;
+    .f-container {
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items: center;
     }
-    .f-container>div{
-        align-items: center!important;
+
+    .f-left, .f-mid, .f-right {
         text-align: center;
+        margin: 20px 0;
     }
-    .f-right{
+
+    .social-icons {
         justify-content: center;
+    }
+
+    .f-menu {
+        flex-direction: column;
+        gap: 10px;
     }
 }

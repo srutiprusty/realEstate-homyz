@@ -16,7 +16,7 @@ const Footer = () => {
             the best place to live for them.
           </span>
         </div>
-        <div className="flexColCenter f-mid">
+        <div className="flexColStart f-mid">
           <span className="primaryText" style={{color:"aliceblue"}}>Reach out to us</span>
          
           
