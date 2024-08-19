@@ -13,6 +13,7 @@
 }
 .r-buttons{
   position: absolute;
+   /* so its parent should be relative which is the container */
   gap: 1rem;
   top: -4rem;
   right: 0;
@@ -41,6 +42,7 @@
   align-items: center;
   }
   .r-buttons{
-    position: initial;
+    position: initial;                      /* r buttons to keep them below the section or last */
+  
   }
 }
