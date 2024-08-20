@@ -8,8 +8,8 @@ const UploadImage = ({
   nextStep,
   prevStep,
 }) => {
-  const [imageURL, setImageURL] = useState(propertyDetails.image);
-  const cloudinaryRef = useRef();
+  const [imageURL, setImageURL] = useState(propertyDetails.image);                    //imageurl in the addPropertyModel
+  const cloudinaryRef = useRef();                                                       //for dealing widget
   const widgetRef = useRef();
   const handleNext = () => {
     setPropertyDetails((prev) => ({ ...prev, image: imageURL }));
@@ -18,13 +18,13 @@ const UploadImage = ({
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
-      {
+      {                                                                                              //from cloudiinary acc
         cloudName: "dcdhklrjc",
         uploadPreset: "vx0dyjgc",
         maxFiles: 1,
       },
       (err, result) => {
-        if (result.event === "success") {
+        if (result.event === "success") {                                                               //func if image is successfully uploaded then in the info .secure url we are going to have url of image
           setImageURL(result.info.secure_url);
         }
       }
@@ -35,7 +35,7 @@ const UploadImage = ({
       {!imageURL ? (
         <div
           className="flexColCenter uploadZone"
-          onClick={() => widgetRef.current?.open()}
+          onClick={() => widgetRef.current?.open()}                                               //open our cuurent upload widget
         >
           <AiOutlineCloudUpload size={50} color="grey" />
           <span>Upload Image</span>
@@ -53,7 +53,7 @@ const UploadImage = ({
         <Button variant="default" onClick={prevStep}>
           Back
         </Button>
-        <Button onClick={handleNext} disabled={!imageURL}>
+        <Button onClick={handleNext} disabled={!imageURL}>                                                       {/* if not uploaded image then no next step */}
           Next
         </Button>
       </Group>

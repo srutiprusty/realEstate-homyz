@@ -27,7 +27,7 @@ const AddPropertyModal = ({ opened, setOpened }) => {
   });
 
   const nextStep = () => {
-    setActive((current) => (current < 4 ? current + 1 : current));
+    setActive((current) => (current < 4 ? current + 1 : current));                  /* as we are going to add 4 functionalities in form in this if we are in 4 th step then no need to go ahead otherwise go ahead with +1*/
   };
 
   const prevStep = () => {

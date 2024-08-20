@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 // Axios instance
 export const api = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: "http://localhost:8000/api",                          /* api due towritten in  index.js of server */             //as server is running at port 8000
   timeout: 10000, // 10 seconds
 });
 
@@ -53,7 +53,7 @@ export const createUser = async (email, token) => {
       `/user/register`,
       { email },
       {
-        headers: {
+        headers: {                                                            /* authorization of token bearer token taken by backend */
           Authorization: `Bearer ${token}`,
         },
       }
@@ -70,7 +70,7 @@ export const bookVisit = async (date, propertyId, email, token) => {
     return;
   }
 
-  try {
+  try {                                                                                 /* parameters,headers */
     await api.post(
       `/user/bookVisit/${propertyId}`,
       {
@@ -90,7 +90,7 @@ export const bookVisit = async (date, propertyId, email, token) => {
 };
 
 // Remove a booking
-export const removeBooking = async (id, email, token) => {
+export const removeBooking = async (id, email, token) => {                      /* refer userControl for parameters i.e eamil as payload*/
   if (!token) {
     toast.error("Authorization token is missing");
     return;
@@ -192,7 +192,7 @@ export const createResidency = async (data, token) => {
 
   try {
     await api.post(
-      `/residency/create`,
+      `/residency/create`,                                          /*  id as parameter*/
       { data },
       {
         headers: {

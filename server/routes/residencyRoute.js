@@ -4,6 +4,6 @@ import jwtCheck from "../config/auth0Config.js";
 const router = express.Router();
 
 router.post("/create", jwtCheck, createResidency)
-router.get("/allresd", getAllResidencies)
+router.get("/allresd", getAllResidencies)                                   //we want even not login they can see all properties..
 router.get("/:id", getResidency)
 export {router as residencyRoute}

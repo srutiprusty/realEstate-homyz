@@ -1,24 +1,30 @@
+//is an abstraction of our database layer as like as postgres sql mysql mongodb etc...
+
+//it provides general way to deal with all kind of the database by providing abstraction layer and abstraction method that could be used on any kind of database and it makes the whole process handy for developers for writing queries for the database 
+
 generator client {
     provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "mongodb"
+    provider = "mongodb"                    //which type of database
     url      = env("DATABASE_URL")
 }
 
+//there will be only two models in schema 1-property & 2-user
+
 model User {
-    id               String      @id @default(auto()) @map("_id") @db.ObjectId
+    id               String      @id @default(auto()) @map("_id") @db.ObjectId                              //make a field with name of ID in the collection of user whose type is String and now it is an ID of a mongodb whose type will be object and it should be automatically generated in backend not manually by user and named as "_id" in the database
     name             String?
     email            String      @unique
     image            String?
     bookedVisits     Json[]
-    favResidenciesID String[]    @db.ObjectId
-    ownedResidencies Residency[] @relation("Owner")
+    favResidenciesID String[]    @db.ObjectId                       //this are mongodb id so specifying db.objectid
+    ownedResidencies Residency[] @relation("Owner")                       //one person can have so many residency and here we have a relationship test on a relation with  owner
 }
 
 model Residency {
-    id          String   @id @default(auto()) @map("_id") @db.ObjectId
+    id          String   @id @default(auto()) @map("_id") @db.ObjectId                                  //id of mongodb
     title       String
     description String
     price       Int
@@ -26,11 +32,11 @@ model Residency {
     city        String
     country     String
     image       String
-    facilities  Json
+    facilities  Json                                 //json odbject
     userEmail   String
-    owner       User     @relation("Owner", fields: [userEmail], references: [email])
+    owner       User     @relation("Owner", fields: [userEmail], references: [email])                       //realtion with owner and the fields mapping useremail in the residency and reference in the user is email
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
 
-    @@unique(fields: [address, userEmail])
+    @@unique(fields: [address, userEmail])                                                                  //userEmail is the email for the owner and address of each property will be unique add
 }

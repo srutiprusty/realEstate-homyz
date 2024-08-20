@@ -18,6 +18,7 @@ const Properties = () => {
   }
 
   if (isLoading) {
+    /* dependency is react spinner */
     return (
       <div className="wrapper flexCenter" style={{ height: "60vh" }}>
         <PuffLoader

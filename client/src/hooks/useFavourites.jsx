@@ -6,23 +6,23 @@ import { getAllFav } from "../utils/api";
 
 const useFavourites = () => {
   const { userDetails, setUserDetails } = useContext(UserDetailContext);
-  const queryRef = useRef();
+  const queryRef = useRef();                                                          //a type of useref hook
   const { user } = useAuth0();
 
   const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: "allFavourites",
+    queryKey: "allFavourites",                                                            //important to make a cache
     queryFn: () => getAllFav(user?.email, userDetails?.token),
     onSuccess: (data) =>
-      setUserDetails((prev) => ({ ...prev, favourites: data })),
+      setUserDetails((prev) => ({ ...prev, favourites: data })),                        //include recent data onto fav array
     enabled: user !== undefined,
-    staleTime: 30000,
+    staleTime: 30000,                                                                         //after how much time we should refetch from server
   });
 
   queryRef.current = refetch;
 
   useEffect(() => {
     queryRef.current && queryRef.current();
-  }, [userDetails?.token]);
+  }, [userDetails?.token]);                                                                               //whenever token is updated we have to refetch again
 
   return { data, isError, isLoading, refetch };
 };

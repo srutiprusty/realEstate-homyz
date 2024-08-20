@@ -14,7 +14,8 @@ const Header = () => {
   const [menuOpened, setMenuOpened] = useState(false);
   const headerColor = useHeaderColor();
   const [modalOpened, setModalOpened] = useState(false);
-  const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
+  /* for login */
+  const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();                      //func that provides prebuild login mechanism from auth 0
   const { validateLogin } = useAuthCheck();
 
 

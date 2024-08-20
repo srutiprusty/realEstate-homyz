@@ -69,8 +69,8 @@ const Facilities = ({
         },
         userEmail: user?.email,
       })
-      setOpened(false)
-      setActiveStep(0)
+      setOpened(false)                                        //have to close my model
+      setActiveStep(0)                                        //next time when we open the model it should be zero step 
       refetchProperties()
     }
 

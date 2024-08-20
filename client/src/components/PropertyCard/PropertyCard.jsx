@@ -1,7 +1,7 @@
 import React from "react";
 import './PropertyCard.css'
 import {AiFillHeart} from 'react-icons/ai'
-import {truncate} from 'lodash'
+import {truncate} from 'lodash'                       /* to not show huge data except how much needed */
 import { useNavigate } from "react-router-dom";
 import Heart from "../Heart/Heart";
 const PropertyCard = ({card}) => {

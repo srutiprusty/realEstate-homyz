@@ -15,9 +15,9 @@ const Layout = () => {
   useBookings()
 
   const { isAuthenticated, user, getAccessTokenWithPopup } = useAuth0();
-  const { setUserDetails } = useContext(UserDetailContext);
+  const { setUserDetails } = useContext(UserDetailContext);                     // to access the user details func
 
-  const { mutate } = useMutation({
+  const { mutate } = useMutation({                                                /* when user athentication is there then mutate else not */
     mutationKey: [user?.email],
     mutationFn: (token) => createUser(user?.email, token),
   });
@@ -31,13 +31,14 @@ const Layout = () => {
           scope: "openid profile email",
         },
       });
-      localStorage.setItem("access_token", res);
-      setUserDetails((prev) => ({ ...prev, token: res }));
+      localStorage.setItem("access_token", res);                    /* to store access token in storage */
+      setUserDetails((prev) => ({ ...prev, token: res }));           /* spreadout previous things and then save ethe response in the token */
+      // console.log(response);
       mutate(res)
     };
 
 
-    isAuthenticated && getTokenAndRegsiter();
+    isAuthenticated && getTokenAndRegsiter();                           //if this cond is true then run this func
   }, [isAuthenticated]);
 
   return (

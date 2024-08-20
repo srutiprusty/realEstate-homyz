@@ -1,6 +1,6 @@
 import {useAuth0} from '@auth0/auth0-react'
 import { toast } from "react-toastify";
-
+/* when we are making functionality of an user before this  check is the user is valida or not */
 
 const useAuthCheck = () => {
 

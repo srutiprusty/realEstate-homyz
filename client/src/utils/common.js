@@ -24,6 +24,7 @@ export const sliderSettings = {
   },
 };
 
+/* update fav */
 export const updateFavourites = (id, favourites = []) => {
   if (!Array.isArray(favourites)) {
     console.error('Expected favourites to be an array');
@@ -31,7 +32,7 @@ export const updateFavourites = (id, favourites = []) => {
   }
 
   if (favourites.includes(id)) {
-    return favourites.filter((resId) => resId !== id);
+    return favourites.filter((resId) => resId !== id);                      /*  returning all prev favourites if included the current one  */
   } else {
     return [...favourites, id];
   }
@@ -49,5 +50,5 @@ export const validateString = (value) => {
   if (value == null || value.length < 3) {
     return "Must have at least 3 characters";
   }
-  return null;
+  return null;                                                                          /* if the length of string is less than 3 or value is null then say must have atleast three characters otherwise null or pass the string */
 };

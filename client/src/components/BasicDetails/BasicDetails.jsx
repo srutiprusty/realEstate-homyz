@@ -23,7 +23,7 @@ const BasicDetails = ({ prevStep, nextStep, propertyDetails, setPropertyDetails 
 
   const handleSubmit = ()=> {
     const {hasErrors} = form.validate()
-    if(!hasErrors) {
+    if(!hasErrors) {                                                                /* if no error then update the properties*/
      setPropertyDetails((prev)=> ({...prev, title, description, price}))
      nextStep()
     }

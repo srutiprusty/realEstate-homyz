@@ -13,12 +13,12 @@ const Heart = ({ id }) => {
   const { user } = useAuth0();
 
   const {
-    userDetails: { favourites = [], token },
+    userDetails: { favourites = [], token },                        /* for accesing token */
     setUserDetails,
   } = useContext(UserDetailContext);
 
   useEffect(() => {
-    setHeartColor(checkFavourites(id, favourites));
+    setHeartColor(checkFavourites(id, favourites));                         //dependency favourites
   }, [id, favourites]); // Ensure `id` is included in the dependency array
 
   const { mutate, isError } = useMutation({
@@ -37,7 +37,7 @@ const Heart = ({ id }) => {
   const handleLike = () => {
     if (validateLogin()) {
       mutate();
-      setHeartColor((prev) => (prev === "#fa3e5f" ? "white" : "#fa3e5f"));
+      setHeartColor((prev) => (prev === "#fa3e5f" ? "white" : "#fa3e5f"));                  /* if prev state is liked then dislike it otherwise like it */
     }
   };
 

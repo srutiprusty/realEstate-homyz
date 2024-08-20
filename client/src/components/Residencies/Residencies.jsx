@@ -56,7 +56,7 @@ const Residencies = () => {
         <Swiper {...sliderSettings}>
           <SlideNextButton />
           {Array.isArray(data) && data.map((card, i) => (
-            <SwiperSlide key={i}>
+            <SwiperSlide key={i}>                                 {/* inside slider we have the property cards */}
               <PropertyCard card={card} />
             </SwiperSlide>
           ))}

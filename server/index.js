@@ -9,15 +9,17 @@ dotenv.config()
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-
+/* one time setup to make our server run */
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors())
 
+/* start the server on the port */
 app.listen(PORT, ()=> {
     console.log(`Server is running on port ${PORT}`);
 });
 
+/* to register to our server */
 app.use("/api/user", userRoute)
 app.use("/api/residency", residencyRoute)
 /* 

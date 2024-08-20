@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       authorizationParams={{
         redirect_uri: "http://localhost:5173" // Ensure this is set in your Auth0 application settings
       }}
-      audience="http://localhost:8000" // Ensure this matches your API identifier in Auth0
+      audience="http://localhost:8000" // Ensure this matches your API identifier in Auth0                        //imp belongs to jwt i.e server running port
       scope="openid profile email" // Define the scopes you need
     >
       <MantineProvider>

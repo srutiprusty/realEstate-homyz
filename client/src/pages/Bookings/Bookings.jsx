@@ -7,11 +7,11 @@ import "../Properties/Properties.css";
 import UserDetailContext from "../../context/UserDetailContext";
 
 const Bookings = () => {
-  const { data, isError, isLoading } = useProperties();
-  const [filter, setFilter] = useState("");
+  const { data, isError, isLoading } = useProperties();                             //custom hook
+  const [filter, setFilter] = useState("");                                           //for searchbar
   const {
     userDetails: { bookings = [] } = {}, // Fallback to empty array if undefined
-  } = useContext(UserDetailContext);
+  } = useContext(UserDetailContext);                                                    //i have to import user bookings
 
   // Ensure data and bookings are correctly populated
   console.log("Bookings:", bookings);
@@ -25,7 +25,9 @@ const Bookings = () => {
     );
   }
 
+   /* loader */
   if (isLoading) {
+    /* dependency is react spinner */
     return (
       <div className="wrapper flexCenter">
         <PuffLoader
@@ -40,14 +42,17 @@ const Bookings = () => {
   }
 
   // Ensure that `data` and `bookings` are arrays
-  const filteredProperties = data
-    ? data
-        .filter((property) => bookings.some((booking) => booking.id === property.id)) // Check if the property id is in the bookings
+  const filteredProperties = data                                                             
+    ? data                    
+    /* {//  data.map((card, i) => (<PropertyCard card={card} key={i} />))               //return the property card and key is provided to avoid warnings while mapping an array
+            // to filter acc to searchfilter} */                                                                            //first we  filter our bookings then filter on our search and then map
+       
+            .filter((property) => bookings.some((booking) => booking.id === property.id)) // Check if the property id is in the bookings
         .filter(
           (property) =>
-            property.title.toLowerCase().includes(filter.toLowerCase()) ||
-            property.city.toLowerCase().includes(filter.toLowerCase()) ||
-            property.country.toLowerCase().includes(filter.toLowerCase())
+            property.title.toLowerCase().includes(filter.toLowerCase()) ||                   //to title
+            property.city.toLowerCase().includes(filter.toLowerCase()) ||                    //to city
+            property.country.toLowerCase().includes(filter.toLowerCase())                    //to country
         )
     : []; // Fallback to empty array if data is undefined
 
