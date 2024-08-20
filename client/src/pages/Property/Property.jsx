@@ -17,28 +17,31 @@ import UserDetailContext from "../../context/UserDetailContext";
 import { Button } from "@mantine/core";
 import { toast } from "react-toastify";
 import Heart from "../../components/Heart/Heart";
+
+
 const Property = () => {
   const { pathname } = useLocation();
-  const id = pathname.split("/").slice(-1)[0];
+  const id = pathname.split("/").slice(-1)[0];                                      //slice after "/" and give the first 0th index
   const { data, isLoading, isError } = useQuery(["resd", id], () =>
-    getProperty(id)
+    getProperty(id)                                                                   //wnt to fetch id from url
   );
 
-  const [modalOpened, setModalOpened] = useState(false);
+  const [modalOpened, setModalOpened] = useState(false);                                    //for opening the booking model
   const { validateLogin } = useAuthCheck();
   const { user } = useAuth0();
 
   const {
-    userDetails: { token, bookings },
+    userDetails: { token, bookings },                                                         /* as in app.js same as bookings */
     setUserDetails,
   } = useContext(UserDetailContext);
 
+  /* cancel booking */
   const { mutate: cancelBooking, isLoading: cancelling } = useMutation({
     mutationFn: () => removeBooking(id, user?.email, token),
     onSuccess: () => {
       setUserDetails((prev) => ({
         ...prev,
-        bookings: prev.bookings.filter((booking) => booking?.id !== id),
+        bookings: prev.bookings.filter((booking) => booking?.id !== id),                    //on bookings array filter out current id booking and return the array
       }));
 
       toast.success("Booking cancelled", { position: "bottom-right" });
@@ -133,7 +136,7 @@ const Property = () => {
                   w={"100%"}
                   color="red"
                   onClick={() => cancelBooking()}
-                  disabled={cancelling}
+                  disabled={cancelling}                                               /* when function done or cancelled then disabled it  */
                 >
                   <span>Cancel booking</span>
                 </Button>
@@ -146,7 +149,7 @@ const Property = () => {
               <button
                 className="button"
                 onClick={() => {
-                  validateLogin() && setModalOpened(true);
+                  validateLogin() && setModalOpened(true);                                {/* onclicking the book a visit first of check login or not if true then setmodalopen as true */}
                 }}
               >
                 Book your visit

@@ -16,10 +16,10 @@ L.Marker.prototype.options.icon = DefaulIcon
 const GeoCoderMarker = ({address}) => {
 
     const map = useMap()
-    const [position, setPosition] = useState([60, 19])
+    const [position, setPosition] = useState([60, 19])                               /* if no address choosed then it will take this by default  */
 
     useEffect(()=> {
-        ELG.geocode().text(address).run((err, results, response)=> {
+        ELG.geocode().text(address).run((err, results, response)=> {                            //ELG library translates our english address to map coordinates
             if(results?.results?.length > 0){
                 const {lat, lng} = results?.results[0].latlng
                 setPosition([lat, lng])
