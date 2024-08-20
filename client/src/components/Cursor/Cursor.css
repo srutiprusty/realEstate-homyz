@@ -1,4 +1,4 @@
-*{
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -13,18 +13,18 @@ body{
 .cursor-dot{
     height: 5px;
     width: 5px;
-    /* background-color: white; */
+    /* background-color: white; 
     background-color:  #1f3d70;
-   /*  background-color: orange; */
+   /*  background-color: orange; 
 }
 
 .cursor-outline{
     width: 30px;
     height: 30px;
     /* border: 2px solid hsla(0,0%,100%,0.5); */
-   /*  border: 2px solid hsla(251, 94%, 51%, 0.5) */
+   /*  border: 2px solid hsla(251, 94%, 51%, 0.5) 
    border: 2px solid hsl(218, 57%, 28%)
-   /* border:2px solid hsl(29, 100%, 59%); */
+   /* border:2px solid hsl(29, 100%, 59%); 
 }
 
 .cursor-dot,.cursor-outline{
@@ -35,4 +35,79 @@ body{
     border-radius: 50%;
     z-index: 1;
     pointer-events:none ;
+} */
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body {
+    height: 100vh;
+    background-color: #1b1b1f;
+    cursor: none;
+}
+
+/* Cursor Dot */
+.cursor-dot {
+    height: 8px;
+    width: 8px;
+    background: var(--blue-gradient); /* Gradient with your blue colors */
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+    transition: transform 0.1s ease, background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(31, 62, 114, 0.8); /* Light effect with primary blue */
+}
+
+/* Cursor Outline */
+.cursor-outline {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+    background: var(--blue-gradient); /* Gradient matching the cursor dot */
+    background-clip: padding-box;
+    box-shadow: 0 0 15px rgba(31, 62, 114, 0.8); /* Light effect with primary blue */
+    animation: cursor-breathe 1.5s infinite ease-in-out;
+}
+
+/* Hover Effect for Interactive Elements */
+a:hover ~ .cursor-dot, 
+button:hover ~ .cursor-dot {
+    transform: scale(2);
+    background-color: var(--orange-gradient); /* Change dot color on hover to orange */
+    box-shadow: 0 0 15px rgba(255, 146, 45, 0.8); /* Change light effect on hover to orange */
+}
+
+a:hover ~ .cursor-outline, 
+button:hover ~ .cursor-outline {
+    transform: scale(1.5);
+    border-color: var(--orange-gradient); /* Change outline color on hover to orange */
+    box-shadow: 0 0 30px rgba(255, 146, 45, 0.8); /* Change light effect on hover to orange */
+}
+
+/* Breathe Animation */
+@keyframes cursor-breathe {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+
+
