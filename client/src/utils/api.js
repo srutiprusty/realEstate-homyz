@@ -44,7 +44,7 @@ export const getProperty = async (id) => {
 // Create a new user
 export const createUser = async (email, token) => {
   if (!token) {
-    toast.error("Authorization token is missing");
+    /* toast.error("Authorization token is missing"); */
     return;
   }
 
