@@ -92,7 +92,7 @@ export const bookVisit = async (date, propertyId, email, token) => {
 // Remove a booking
 export const removeBooking = async (id, email, token) => {                      /* refer userControl for parameters i.e eamil as payload*/
   if (!token) {
-    toast.error("Authorization token is missing");
+    /* toast.error("Authorization token is missing"); */
     return;
   }
 
@@ -140,8 +140,8 @@ export const toFav = async (id, email, token) => {
 // Fetch all favorite properties
 export const getAllFav = async (email, token) => {
   if (!token) {
-    toast.error("Authorization token is missing");
-    return;
+    /* toast.error("Authorization token is missing");
+    return; */
   }
 
   try {
@@ -163,7 +163,7 @@ export const getAllFav = async (email, token) => {
 // Fetch all bookings
 export const getAllBookings = async (email, token) => {
   if (!token) {
-    toast.error("Authorization token is missing");
+    /* toast.error("Authorization token is missing"); */
     return;
   }
 
@@ -186,7 +186,7 @@ export const getAllBookings = async (email, token) => {
 // Create a new residency
 export const createResidency = async (data, token) => {
   if (!token) {
-    toast.error("Authorization token is missing");
+   /*  toast.error("Authorization token is missing"); */
     return;
   }
 
